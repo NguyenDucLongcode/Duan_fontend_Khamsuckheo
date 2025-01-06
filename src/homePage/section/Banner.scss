@@ -1,0 +1,113 @@
+.Banner-container {
+  .Banner-background {
+    height: 550px;
+    background-image: url("../../assets/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 -117px;
+    position: relative;
+    border-bottom: 1px solid gray;
+    &::after {
+      display: block;
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -15px;
+      width: 100%;
+      height: 23%;
+      background: linear-gradient(
+        0deg,
+        white,
+        rgb(255, 255, 255, 0.9),
+        rgb(255, 255, 255, 0.6),
+        rgb(255, 255, 255, 0.4)
+      );
+      filter: blur(10px);
+    }
+    &::before {
+      z-index: 1;
+      display: block;
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: rgb(0, 0, 0, 0.1);
+    }
+    .content-up {
+      position: relative;
+      z-index: 2;
+      .title {
+        text-align: center;
+        margin-bottom: 20px;
+        padding-top: 80px;
+        font-size: 36px;
+        color: white;
+        text-shadow: 2px 2px 5px gray;
+      }
+      .search {
+        margin: 0 auto;
+        width: 460px;
+        background-color: orange;
+        height: 57px;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        input {
+          width: 375px;
+          height: 40px;
+          background: transparent;
+          border: none;
+          outline: none;
+        }
+        .search-icon {
+          font-size: 25px;
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .content-down {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      margin-top: 155px;
+      .option {
+        display: flex;
+        gap: 70px;
+        .option-child {
+          display: flex;
+          flex-flow: column;
+          justify-content: center;
+          align-items: center;
+          .background-icon {
+            box-shadow: 1px 1px 5px gray;
+            background-color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .option-icon {
+              color: #26acac;
+            }
+          }
+          .option-icon {
+            font-size: 25px;
+          }
+          p {
+            font-weight: 550;
+          }
+          & p:nth-of-type(2) {
+            margin-top: -20px;
+          }
+        }
+      }
+    }
+  }
+}

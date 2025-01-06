@@ -1,0 +1,79 @@
+/* reset.scss */
+
+/* Xóa margin, padding và thiết lập box-sizing */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Đặt font mặc định */
+html {
+  font-size: 100%; /* 1rem = 16px */
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  width: 1536px;
+  margin: 0 auto;
+}
+
+/* Xóa style mặc định của danh sách */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Xóa style mặc định của các thẻ tiêu đề */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Đặt lại style cho các thẻ dạng inline */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Xóa style mặc định của bảng */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Thiết lập hình ảnh và video */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Đặt lại form element */
+input,
+textarea,
+select {
+  font: inherit;
+}

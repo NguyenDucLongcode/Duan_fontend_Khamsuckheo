@@ -1,0 +1,26 @@
+.footer-container {
+  padding: 50px 80px;
+  .title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .footer-box {
+    .box-title {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  }
+  .footer-infor {
+    text-align: center;
+    margin-top: 15px;
+    div {
+      font-size: 18px;
+      letter-spacing: 1px;
+      span {
+        margin-left: 15px;
+        color: blue;
+      }
+    }
+  }
+}
