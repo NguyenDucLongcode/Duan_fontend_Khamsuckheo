@@ -1,0 +1,97 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #78c4d4, #e6e9a0);
+}
+
+.login-content {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 370px;
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(to right, #33ccff, #ffcc00);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  .icon-pass {
+    position: absolute;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+    transition: color 0.3s;
+    transform: translate(-40px, 17px);
+    z-index: 1;
+    &:hover {
+      color: black;
+    }
+  }
+
+  .social-login {
+    margin-top: 20px;
+
+    button {
+      margin: 5px;
+      background: none;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .login-gg {
+      background: rgb(231, 76, 76);
+    }
+    .login-f {
+      background: rgb(82, 82, 242);
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

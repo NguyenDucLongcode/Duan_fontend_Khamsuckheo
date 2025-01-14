@@ -15,10 +15,10 @@ const HomePageFooter = () => {
               height="514"
               src="https://www.youtube.com/embed/qAZVnSc0IpI"
               title='Top Nhạc Thư Giãn Chơi Game Cực Phiêu "Tuyệt Đỉnh Gây Nghiện" ♫ Chút Nhạc Quẩy Game Cho Ngày Dài'
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
             ></iframe>
           </div>
           <div className="box-title">

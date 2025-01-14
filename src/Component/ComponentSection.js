@@ -1,113 +1,81 @@
 import "./ComponentSection.scss";
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
+import _ from "lodash";
 
-export default function ComponentSection() {
+export default function ComponentSection(props) {
+  const { OutstandingDoctor, dataTopDoctor } = props;
+  const [isAtStart, setIsAtStart] = useState(true); // Trạng thái kiểm tra slider có ở đầu không
+  const [isAtEnd, setIsAtEnd] = useState(false); // Trạng thái kiểm tra slider có ở cuối không
+
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false, // Đặt infinite là false để có thể điều khiển mũi tên
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    beforeChange: (current, next) => {
+      // Cập nhật trạng thái khi chuyển slides
+      if (next === 0) {
+        setIsAtStart(true); // Ở đầu
+      } else if (next === groups.length - 1) {
+        setIsAtEnd(true); // Ở cuối
+      } else {
+        setIsAtStart(false); // Không phải đầu
+        setIsAtEnd(false); // Không phải cuối
+      }
+    },
+    prevArrow: (
+      <button
+        className={`slick-prev ${isAtStart ? "slick-disabled" : ""}`}
+        disabled={isAtStart}
+      >
+        &#8592;
+      </button>
+    ),
+    nextArrow: (
+      <button
+        className={`slick-next ${isAtEnd ? "slick-disabled" : ""}`}
+        disabled={isAtEnd}
+      >
+        &#8594;
+      </button>
+    ),
   };
+
+  const data = dataTopDoctor?.data || [];
+  const groups = _.chunk(data, 4); // Chia thành các nhóm 4 phần tử
 
   return (
     <div className="section-container">
       <div className="section-content">
         <div className="section-title">
-          <span>Chuyên khoa phổ biến </span>
+          {OutstandingDoctor ? (
+            <span>Bác sĩ nổi bật</span>
+          ) : (
+            <span>Cơ xương khớp</span>
+          )}
           <button>XEM THÊM</button>
         </div>
         <div className="section-slice">
           <Slider {...settings}>
-            <div className="section-slice-child d-flex gap-3">
-              {/* options 1 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 1</p>
+            {groups.map((group, groupIndex) => (
+              <div
+                className="section-slice-child d-flex gap-3"
+                key={groupIndex}
+              >
+                {group.map((doctor, doctorIndex) => (
+                  <div className="option-child" key={doctorIndex}>
+                    <img src={doctor.image} alt="logo" />
+                    <p>
+                      {`${doctor.positionData.valueVi}, ${doctor.firstName} ${doctor.lastName}`}
+                      <br />
+                    </p>
+                    <p>Khoa xương khớp</p>
+                  </div>
+                ))}
               </div>
-              {/* options 2 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 2</p>
-              </div>
-              {/* options 3 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 3</p>
-              </div>
-              {/* options 4 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 4</p>
-              </div>
-            </div>
-            <div className="section-slice-child d-flex gap-3">
-              {/* options 1 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 1</p>
-              </div>
-              {/* options 2 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 2</p>
-              </div>
-              {/* options 3 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 3</p>
-              </div>
-              {/* options 4 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 4</p>
-              </div>
-            </div>
-            <div className="section-slice-child d-flex gap-3">
-              {/* options 1 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 1</p>
-              </div>
-              {/* options 2 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 2</p>
-              </div>
-              {/* options 3 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 3</p>
-              </div>
-              {/* options 4 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 4</p>
-              </div>
-            </div>
-            <div className="section-slice-child d-flex gap-3">
-              {/* options 1 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 1</p>
-              </div>
-              {/* options 2 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 2</p>
-              </div>
-              {/* options 3 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 3</p>
-              </div>
-              {/* options 4 */}
-              <div className="option-child">
-                <div></div>
-                <p>Cơ xương 4</p>
-              </div>
-            </div>
+            ))}
           </Slider>
         </div>
       </div>

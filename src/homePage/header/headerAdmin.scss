@@ -1,0 +1,83 @@
+.header-admin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 20px 50px;
+  background: linear-gradient(90deg, #0078ff, #00c6ff);
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: auto; /* Đẩy các mục bên phải cách logo */
+  }
+
+  .nav {
+    margin-right: 50px;
+    .nav-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      .nav-link {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          background: #fff;
+          color: #0078ff;
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  .right-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .language-select {
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: none;
+      background: #fff;
+      color: #0078ff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #0078ff;
+        color: #fff;
+      }
+    }
+
+    .logout-btn {
+      padding: 8px 15px;
+      font-size: 1rem;
+      color: #0078ff;
+      background: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #0078ff;
+        color: #fff;
+      }
+    }
+  }
+}
