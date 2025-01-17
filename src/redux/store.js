@@ -2,8 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 // element
-import { UserApi, DoctorApi } from "./SliceApi/index";
-import { allCodeReducer, userReducer } from "./Slice";
+import { UserApi, DoctorApi, AllCodeApi } from "./SliceApi/index";
+import { allCodeReducer, userReducer, scheduleReducer } from "./Slice";
 
 const persistConfig = {
   key: "root", // Tên của persisted key
@@ -16,8 +16,10 @@ const store = configureStore({
   reducer: {
     user: persistedReducer,
     AllCode: allCodeReducer,
+    schedule: scheduleReducer,
     [UserApi.reducerPath]: UserApi.reducer,
     [DoctorApi.reducerPath]: DoctorApi.reducer,
+    [AllCodeApi.reducerPath]: AllCodeApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -26,7 +28,8 @@ const store = configureStore({
       },
     })
       .concat(UserApi.middleware)
-      .concat(DoctorApi.middleware),
+      .concat(DoctorApi.middleware)
+      .concat(AllCodeApi.middleware),
 });
 
 const persistor = persistStore(store);

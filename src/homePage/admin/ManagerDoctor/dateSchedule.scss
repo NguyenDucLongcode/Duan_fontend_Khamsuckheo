@@ -1,0 +1,48 @@
+.dateSchedule-container {
+  padding: 20px 100px 20px 100px;
+  width: 100%;
+  .title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .selectInput-content {
+    display: flex;
+    gap: 20px;
+    .content-right {
+      width: 50%;
+    }
+    .content-left {
+      width: 50%;
+      .content-left-title {
+        margin-bottom: -1px;
+      }
+    }
+  }
+  .schedule-content {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    .btn {
+      background-color: white;
+      color: black;
+      border: 1px solid #ccc;
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        background-color: rgb(245, 182, 64);
+        color: white;
+      }
+
+      &.active {
+        background-color: rgb(245, 182, 64);
+        color: white;
+      }
+    }
+  }
+}

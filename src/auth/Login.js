@@ -34,9 +34,15 @@ const Login = () => {
     if (res && res.errCode === 0) {
       toast.success(res.message);
       dispatch(userLogin(res.user));
-      navigate("/admin");
+      navigate("/system");
     } else {
       toast.error(res.message);
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit(event);
     }
   };
 
@@ -72,7 +78,9 @@ const Login = () => {
           <span className="icon-pass" onClick={handleShowHidePass}>
             {isShowPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
-          <button type="submit">Login</button>
+          <button type="submit" onKeyDown={handleKeyDown}>
+            Login
+          </button>
         </form>
         <a href="#">Forgot your password?</a>
         <div className="social-login">

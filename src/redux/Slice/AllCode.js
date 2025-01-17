@@ -6,16 +6,18 @@ export const fetchAllCode = createAsyncThunk(
   "data/fetchAllCode",
   async (_, { rejectWithValue }) => {
     try {
-      const [ROLE, GENDER, POSITION] = await Promise.all([
+      const [ROLE, GENDER, POSITION, TIME] = await Promise.all([
         getAllCodeByStyle("ROLE"),
         getAllCodeByStyle("GENDER"),
         getAllCodeByStyle("POSITION"),
+        getAllCodeByStyle("TIME"),
       ]);
 
       return {
         apiGetRole: ROLE.data,
         apiGetGender: GENDER.data,
         apiGetPosition: POSITION.data,
+        apiGetTime: TIME.data,
       };
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
@@ -30,6 +32,7 @@ const dataAllCode = createSlice({
     ROLE: null,
     GENDER: null,
     POSITION: null,
+    TIME: null,
     isLoading: false,
     error: null,
   },
@@ -45,6 +48,7 @@ const dataAllCode = createSlice({
         state.ROLE = action.payload.apiGetRole;
         state.GENDER = action.payload.apiGetGender;
         state.POSITION = action.payload.apiGetPosition;
+        state.TIME = action.payload.apiGetTime;
       })
       .addCase(fetchAllCode.rejected, (state, action) => {
         state.isLoading = false;

@@ -1,12 +1,14 @@
-import "./ComponentSection.scss";
+import "./sectionDoctor.scss";
 import React, { useState } from "react";
 import Slider from "react-slick";
 import _ from "lodash";
+import { useNavigate } from "react-router";
 
-export default function ComponentSection(props) {
-  const { OutstandingDoctor, dataTopDoctor } = props;
+export default function SectionDoctor(props) {
+  const { dataTopDoctor } = props;
   const [isAtStart, setIsAtStart] = useState(true); // Trạng thái kiểm tra slider có ở đầu không
   const [isAtEnd, setIsAtEnd] = useState(false); // Trạng thái kiểm tra slider có ở cuối không
+  let navigate = useNavigate();
 
   const settings = {
     dots: false,
@@ -50,12 +52,7 @@ export default function ComponentSection(props) {
     <div className="section-container">
       <div className="section-content">
         <div className="section-title">
-          {OutstandingDoctor ? (
-            <span>Bác sĩ nổi bật</span>
-          ) : (
-            <span>Cơ xương khớp</span>
-          )}
-          <button>XEM THÊM</button>
+          <span>Bác sĩ nổi bật</span>
         </div>
         <div className="section-slice">
           <Slider {...settings}>
@@ -65,7 +62,11 @@ export default function ComponentSection(props) {
                 key={groupIndex}
               >
                 {group.map((doctor, doctorIndex) => (
-                  <div className="option-child" key={doctorIndex}>
+                  <div
+                    className="option-child"
+                    key={doctorIndex}
+                    onClick={() => navigate(`/doctor/${doctor.id}`)}
+                  >
                     <img src={doctor.image} alt="logo" />
                     <p>
                       {`${doctor.positionData.valueVi}, ${doctor.firstName} ${doctor.lastName}`}

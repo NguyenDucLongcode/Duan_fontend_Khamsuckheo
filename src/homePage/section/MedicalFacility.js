@@ -1,11 +1,11 @@
-import ComponentSection from "../../Component/ComponentSection";
+// import ComponentSection from "../../Component/ComponentSection";
 
-const MedicalFacility = () => {
-  return (
-    <>
-      <ComponentSection />
-    </>
-  );
-};
+// const MedicalFacility = () => {
+//   return (
+//     <>
+//       <ComponentSection />
+//     </>
+//   );
+// };
 
-export default MedicalFacility;
+// export default MedicalFacility;

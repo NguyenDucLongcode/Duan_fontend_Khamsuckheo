@@ -1,0 +1,58 @@
+/* Custom styles cho ô input */
+.react-datepicker-wrapper {
+  display: inline-block;
+  width: 100%;
+}
+
+.react-datepicker__input-container {
+  input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    /* Hiệu ứng khi hover */
+    &:hover {
+      border-color: #007bff;
+    }
+
+    /* Hiệu ứng khi focus */
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+    }
+
+    /* Placeholder styling */
+    &::placeholder {
+      color: #aaa;
+      font-style: italic;
+    }
+
+    /* Disabled input */
+    &:disabled {
+      background-color: #f5f5f5;
+      color: #999;
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* Custom arrow icon nếu cần */
+.react-datepicker-ignore-onclickoutside {
+  position: relative;
+
+  &::after {
+    content: "▼";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #007bff;
+  }
+}

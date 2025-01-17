@@ -1,10 +1,4 @@
-import ComponentSection from "../../Component/ComponentSection";
-
-const Specialty = () => {
-  return (
-    <>
-      <ComponentSection />
-    </>
-  );
-};
-export default Specialty;
+// const Specialty = () => {
+//   return <>dsdvsd</>;
+// };
+// export default Specialty;

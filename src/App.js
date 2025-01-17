@@ -4,8 +4,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LayoutHomePage from "./Layout/layoutHomePage";
 import { ToastContainer, Bounce } from "react-toastify";
 import Login from "./auth/Login";
-import LayoutAdmin from "./Layout/layoutAdmin";
-import ManagerUser from "./homePage/admin/ManagerUser/ManagerUser";
+import LayoutSystem from "./Layout/layoutSystem";
+import DetailDoctor from "./homePage/section/doctor/detailDoctor";
+import {
+  ManagerUser,
+  HomePageAdmin,
+  ManagerDoctor,
+} from "./homePage/admin/index";
 function App() {
   return (
     <>
@@ -14,14 +19,17 @@ function App() {
           {/* Layout chính cho các trang công khai */}
           <Route path="/" element={<LayoutHomePage />}>
             <Route index element={<HomePage />} />
+            <Route path="doctor/:id" element={<DetailDoctor />} />
           </Route>
 
           {/* auth */}
           <Route path="login" element={<Login />} />
 
           {/* admin */}
-          <Route path="/admin" element={<LayoutAdmin />}>
-            <Route index element={<ManagerUser />} />
+          <Route path="/system" element={<LayoutSystem />}>
+            <Route index element={<HomePageAdmin />} />
+            <Route path="User" element={<ManagerUser />} />
+            <Route path="Doctor" element={<ManagerDoctor />} />
           </Route>
         </Routes>
       </Router>

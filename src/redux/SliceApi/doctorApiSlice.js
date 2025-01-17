@@ -10,7 +10,31 @@ export const DoctorApi = createApi({
         method: "GET",
       }),
     }),
+    getAllDoctor: builder.query({
+      query: () => ({
+        url: "api/v1/getAllDoctor",
+        method: "GET",
+      }),
+    }),
+    getDoctorById: builder.query({
+      query: (doctorId) => ({
+        url: `api/v1/getDoctorById?id=${doctorId}`,
+        method: "GET",
+      }),
+    }),
+    createDoctor: builder.mutation({
+      query: (Data) => ({
+        url: "api/v1/addInforDoctor",
+        method: "POST",
+        body: Data,
+      }),
+    }),
   }),
 });
-export const { useGetTopDoctorQuery } = DoctorApi;
+export const {
+  useGetTopDoctorQuery,
+  useGetAllDoctorQuery,
+  useGetDoctorByIdQuery,
+  useCreateDoctorMutation,
+} = DoctorApi;
 export default DoctorApi;

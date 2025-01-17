@@ -1,10 +1,4 @@
-import ComponentSection from "../../Component/ComponentSection";
-
-const FeaturedHospital = () => {
-  return (
-    <>
-      <ComponentSection />
-    </>
-  );
-};
-export default FeaturedHospital;
+// const FeaturedHospital = () => {
+//   return <>zsxcs</>;
+// };
+// export default FeaturedHospital;

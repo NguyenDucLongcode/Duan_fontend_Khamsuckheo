@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "yet-another-react-lightbox/styles.css";
+import "react-markdown-editor-lite/lib/index.css";
+import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
