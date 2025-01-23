@@ -1,0 +1,68 @@
+.doctorInforSchedule-container {
+  padding-left: 30px;
+  border-left: 1px solid #eeebeb;
+  .infor-content {
+    display: flex;
+    flex-flow: column;
+    gap: 3px;
+    span:nth-of-type(1) {
+      font-size: 20px;
+      font-weight: 550;
+      color: gray;
+    }
+    span:nth-of-type(2) {
+      font-weight: 600;
+    }
+    em {
+      font-size: 15px;
+      font-weight: 100;
+      color: rgb(107, 106, 106);
+    }
+  }
+  .prince-content {
+    .placeholder-prince {
+      span:nth-of-type(1) {
+        font-size: 16px;
+        font-weight: 550;
+        color: gray;
+      }
+      span:nth-of-type(2) {
+        color: rgb(20, 176, 238);
+        margin-left: 10px;
+      }
+    }
+    .prince-box {
+      .prince-infor {
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(249, 249, 249);
+        padding: 3px 5px 3px 5px;
+        border: 1px solid rgb(219, 217, 217);
+      }
+      .prince-box-pay {
+        background-color: rgb(237, 235, 235);
+        padding: 3px 8px 3px 8px;
+        p {
+          margin-bottom: 0px;
+        }
+      }
+      .prince-box-note {
+        font-size: 14px;
+        color: #838181;
+        background-color: rgb(249, 249, 249);
+        padding: 3px 5px 3px 5px;
+        border: 1px solid rgb(219, 217, 217);
+        margin-bottom: 10px;
+      }
+    }
+    .hide-princeTable {
+      color: rgb(20, 176, 238);
+      margin-top: 10px;
+    }
+  }
+  hr {
+    margin: 10px auto;
+    height: 2px;
+    color: #a5a5a5;
+  }
+}

@@ -14,8 +14,9 @@
     display: flex;
     margin-bottom: 10px;
     .selector-doctor {
-      width: 30%;
+      width: 33.5%;
       z-index: 10;
+      margin-top: 15px;
     }
     .introduce-doctor {
       width: 70%;
@@ -23,11 +24,41 @@
       padding-left: 20px;
       textarea {
         width: 100%;
+        height: 80px;
         border-radius: 5px;
         border: none;
         box-shadow: 1px 1px 5px rgb(190, 189, 189);
         padding: 5px;
       }
     }
+  }
+  .selector-groupInput {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 9;
+    .typeText {
+      display: flex;
+      flex-flow: column;
+      input {
+        height: 37px;
+        border: 1px solid rgb(211, 208, 208);
+        border-radius: 5px;
+        padding: 0 10px;
+      }
+    }
+    // .input-address {
+    //   grid-column: 3/5;
+    //   display: flex;
+    //   flex-flow: column;
+    //   input {
+    //     height: 37px;
+    //     border: 1px solid rgb(211, 208, 208);
+    //     border-radius: 5px;
+    //     padding: 0 10px;
+    //   }
+    // }
   }
 }

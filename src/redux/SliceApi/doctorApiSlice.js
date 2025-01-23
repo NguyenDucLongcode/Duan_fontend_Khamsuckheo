@@ -29,12 +29,46 @@ export const DoctorApi = createApi({
         body: Data,
       }),
     }),
+    createDoctorSchedule: builder.mutation({
+      query: (Data) => ({
+        url: "/api/v1/postCreateDoctorSchedule",
+        method: "POST",
+        body: Data,
+      }),
+    }),
+    getDoctorScheduleById: builder.query({
+      query: ({ id, date }) => {
+        return {
+          url: `/api/v1/getDoctorScheduleById?id=${id}&date=${date}`,
+          method: "GET",
+        };
+      },
+    }),
+    createTableDoctorInfo: builder.mutation({
+      query: (data) => ({
+        url: "/api/v1/addTableDoctorInfo",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getTableDoctorInforById: builder.query({
+      query: (id) => {
+        return {
+          url: `/api/v1/getTableDoctorInfor?id=${id}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 export const {
   useGetTopDoctorQuery,
   useGetAllDoctorQuery,
   useGetDoctorByIdQuery,
+  useGetDoctorScheduleByIdQuery,
+  useGetTableDoctorInforByIdQuery,
   useCreateDoctorMutation,
+  useCreateTableDoctorInfoMutation,
+  useCreateDoctorScheduleMutation,
 } = DoctorApi;
 export default DoctorApi;

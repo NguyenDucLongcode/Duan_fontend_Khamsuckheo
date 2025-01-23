@@ -16,10 +16,13 @@
     }
     .content-right {
       strong {
-        font-size: 20px;
+        font-size: 26px;
       }
       p {
+        width: 700px;
         margin-top: 10px;
+        font-size: 17px;
+        color: rgb(135, 135, 135);
       }
     }
   }
@@ -33,6 +36,16 @@
     h2 {
       font-size: 20px;
       font-weight: 600;
+    }
+  }
+  .doctorSchedule {
+    padding: 30px 120px;
+    display: flex;
+    .content-left {
+      width: 50%;
+    }
+    .content-right {
+      width: 50%;
     }
   }
 }

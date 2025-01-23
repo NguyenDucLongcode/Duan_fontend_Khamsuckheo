@@ -1,0 +1,42 @@
+.profile-content {
+  height: 100px;
+  display: flex;
+  margin-bottom: 30px;
+  .avatar {
+    width: 150px;
+    img {
+      height: 110px;
+      width: 110px;
+      border-radius: 50%;
+      border: 1.5px solid rgb(201, 199, 199);
+    }
+  }
+  .introduce {
+    display: flex;
+    flex-flow: column;
+    padding-top: 10px;
+    span:nth-child(1) {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .intro-address {
+      margin-left: 23px;
+    }
+    .calendar {
+      span {
+        color: orange;
+        font-weight: 550;
+      }
+    }
+    .intro {
+      display: flex;
+      gap: 5px;
+      .hospital-icon,
+      .calendar-icon {
+        margin-top: 5px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}

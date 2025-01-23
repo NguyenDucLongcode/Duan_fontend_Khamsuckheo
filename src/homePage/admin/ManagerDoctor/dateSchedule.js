@@ -1,10 +1,12 @@
 import "./dateSchedule.scss";
 import Select from "react-select";
 import { useState, useEffect } from "react";
-import DateTable from "./dateTable";
+import DatePickerTable from "./DatePicker";
 import { useGetAllCodeTimeQuery } from "../../../redux/SliceApi/allCodeApi";
 import { memo } from "react";
 import { useSelector } from "react-redux";
+import { useCreateDoctorScheduleMutation } from "../../../redux/SliceApi/doctorApiSlice";
+import { toast } from "react-toastify";
 
 const DateSchedule = (props) => {
   const { dataAllDoctors } = props;
@@ -13,6 +15,7 @@ const DateSchedule = (props) => {
   const [options, setOptions] = useState([]);
   const [dataScheduleSummit, setDataScheduleSummit] = useState([]);
   // redux
+  const [createDoctorSchedule] = useCreateDoctorScheduleMutation();
   const { data: dataTime } = useGetAllCodeTimeQuery("TIME");
   const [valueSchedule, setValueSchedule] = useState([]);
   const date = useSelector((state) => state.schedule.timeSchedule);
@@ -24,18 +27,32 @@ const DateSchedule = (props) => {
     );
   };
 
-  const handleClickSummit = () => {
-    setDataScheduleSummit([
-      ...dataScheduleSummit,
-      ...valueSchedule.map((item) => ({
-        doctorId: selectedOption.value,
-        date: date,
-        time: item,
-      })),
-    ]);
-  };
-  console.log(">>", dataScheduleSummit);
+  const handleClickSummit = async () => {
+    // validate
+    if (!selectedOption) {
+      toast.error("please choose doctor");
+    }
+    if (!date) {
+      toast.error("please choose date");
+    }
+    console.log(">>> ", valueSchedule);
+    if (!valueSchedule.length > 0) {
+      toast.error("please choose at least  a schedule");
+    }
+    // call api
+    try {
+      const response = await createDoctorSchedule(dataScheduleSummit).unwrap();
+      if (response.errCode === 0) {
+        toast.success(response.message);
+      } else {
+        toast.error(response.message);
+      }
+    } catch (error) {
+      console.error("Error creating doctor schedule", error);
+    }
 
+    setDataScheduleSummit([]);
+  };
   useEffect(() => {
     if (dataAllDoctors) {
       setOptions(
@@ -48,6 +65,16 @@ const DateSchedule = (props) => {
       );
     }
   }, [dataAllDoctors]);
+
+  useEffect(() => {
+    setDataScheduleSummit([
+      ...valueSchedule.map((item) => ({
+        doctorId: selectedOption.value,
+        date: date,
+        timeType: item,
+      })),
+    ]);
+  }, [valueSchedule, selectedOption?.value, date]);
 
   return (
     <div className="dateSchedule-container">
@@ -63,7 +90,7 @@ const DateSchedule = (props) => {
         </div>
         <div className="content-left">
           <p className="content-left-title">Chọn ngày khám</p>
-          <DateTable className="dateTable" />
+          <DatePickerTable className="dateTable" />
         </div>
       </div>
       <div className="schedule-content">

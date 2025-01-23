@@ -2,31 +2,55 @@ import { useParams } from "react-router-dom";
 import { useGetDoctorByIdQuery } from "../../../redux/SliceApi/doctorApiSlice";
 import "./detailDoctor.scss";
 import ReactMarkdown from "react-markdown";
+import DoctorSchedule from "./componentDoctorSchedule";
+import DoctorInforSchedule from "./componentDoctorInforSchedule";
+import { useDispatch } from "react-redux";
+import { doctorSchedule } from "../../../redux/Slice/doctor";
 
 const DetailDoctor = () => {
   const { id } = useParams();
-  const { data: dataDoctor } = useGetDoctorByIdQuery(id);
+  const dispatch = useDispatch();
+  const { data: dataDoctorById } = useGetDoctorByIdQuery(id);
 
-  console.log(">>> check id ", dataDoctor?.data);
+  if (dataDoctorById && dataDoctorById?.data) {
+    dispatch(doctorSchedule(dataDoctorById?.data));
+  }
 
   return (
     <div className="detailDoctor-container">
+      {/* information */}
       <div className="infoDoctor">
         <div className="content-left">
-          <img src={dataDoctor?.data?.image} alt="logo" className="avatar" />
+          <img
+            src={dataDoctorById?.data?.image}
+            alt="logo"
+            className="avatar"
+          />
         </div>
         <div className="content-right">
           <strong>
-            {`${dataDoctor?.data?.positionData?.valueVi}, ${dataDoctor?.data?.firstName} ${dataDoctor?.data?.lastName}`}
+            {`${dataDoctorById?.data?.positionData?.valueVi}, ${dataDoctorById?.data?.firstName} ${dataDoctorById?.data?.lastName}`}
           </strong>
-          <p>{dataDoctor?.data?.MarkdownData?.description}</p>
+          <p>{dataDoctorById?.data?.MarkdownData?.description}</p>
         </div>
       </div>
+      {/* doctor schedule */}
+      <div className="doctorSchedule">
+        <div className="content-left">
+          <DoctorSchedule />
+        </div>
+
+        <div className="content-right">
+          <DoctorInforSchedule />
+        </div>
+      </div>
+      {/* markdown content */}
       <div className="markdown-container">
         <ReactMarkdown>
-          {dataDoctor?.data?.MarkdownData?.contentMarkdown}
+          {dataDoctorById?.data?.MarkdownData?.contentMarkdown}
         </ReactMarkdown>
       </div>
+      {/* comment */}
       <div className="comment-container">
         <h2>Phản hồi của bệnh nhân sau khi khám</h2>
         <div className="comment-content"></div>
