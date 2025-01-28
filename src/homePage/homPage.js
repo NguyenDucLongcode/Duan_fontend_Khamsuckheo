@@ -1,18 +1,19 @@
 import HomePageFooter from "./footer/homePageFooter";
 import "./homepage.scss";
 import Banner from "./section/banner";
-// import FeaturedHospital from "./section/FeaturedHospital";
-// import MedicalFacility from "./section/MedicalFacility";
+import Clinic from "./section/clinic/Clinic";
+
 import OutStandingDoctor from "./section/doctor/OutStandingDoctor";
-// import Specialty from "./section/Specialty";
+import Specialty from "./section/specialty/Specialty";
+
 const HomePage = () => {
   return (
     <div className="homepage-container">
       <Banner />
-      {/* <Specialty />
-      <FeaturedHospital />
-      <MedicalFacility /> */}
+      <Specialty />
+
       <OutStandingDoctor />
+      <Clinic />
       <HomePageFooter />
     </div>
   );

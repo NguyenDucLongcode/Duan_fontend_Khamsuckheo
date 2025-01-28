@@ -6,8 +6,9 @@ import { useParams } from "react-router-dom";
 import { useGetDoctorScheduleByIdQuery } from "../../../redux/SliceApi/doctorApiSlice";
 import DoctorModal from "./doctorModal/DoctorModal";
 
-const DoctorSchedule = () => {
+const DoctorSchedule = (props) => {
   const { id } = useParams();
+  const { doctorId } = props;
   const today = new Date();
   const formattedDate = format(today, "yyyy-MM-dd");
   const currentDayIndex = today.getDay(); // 0 (Chủ nhật) đến 6 (Thứ 7)
@@ -34,10 +35,9 @@ const DoctorSchedule = () => {
   const [selectedLabel, setSelectedLabel] = useState(reorderedDays[0].label);
   const [dataTime, setDataTime] = useState();
   const { data: dataDoctorById } = useGetDoctorScheduleByIdQuery({
-    id: id,
+    id: doctorId ? doctorId : id,
     date: selectedDate,
   });
-
   const handleSelectChange = (event) => {
     const selectedOption = event.target.selectedOptions[0];
     setSelectedDate(event.target.value); // Lưu giá trị được chọn (timestamp)

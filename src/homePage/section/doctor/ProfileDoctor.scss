@@ -15,7 +15,7 @@
     display: flex;
     flex-flow: column;
     padding-top: 10px;
-    span:nth-child(1) {
+    .intro-name {
       font-size: 20px;
       font-weight: 600;
     }
@@ -28,6 +28,12 @@
         font-weight: 550;
       }
     }
+    .description {
+      margin-left: -20px;
+      width: 550px;
+      font-weight: 100 !important;
+      padding-left: 20px;
+    }
     .intro {
       display: flex;
       gap: 5px;
@@ -38,5 +44,8 @@
         height: 18px;
       }
     }
+  }
+  .infor-prince {
+    margin-left: 50px;
   }
 }

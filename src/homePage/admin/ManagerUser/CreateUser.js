@@ -112,6 +112,7 @@ const CreateUser = () => {
       toast.error("Số điện thoại phải 10 hoặc 11 số!");
       return;
     }
+
     try {
       const response = await createUser(dataInputUser).unwrap(); // Gửi dữ liệu và nhận phản hồi
       if (response.errCode === 0) {
@@ -153,7 +154,7 @@ const CreateUser = () => {
             ))}
             {/* Gender */}
             <div className="form-group">
-              <label htmlFor="gender">Gender</label>
+              <label htmlFor="gender">Gới tính</label>
               <select
                 id="gender"
                 name="gender"
@@ -168,7 +169,7 @@ const CreateUser = () => {
                   GENDER.map((gender, index) => {
                     return (
                       <option key={`${index} + "gender"`} value={gender.key}>
-                        {gender.valueEn}
+                        {gender.valueVi}
                       </option>
                     );
                   })}
@@ -177,7 +178,7 @@ const CreateUser = () => {
 
             {/* "position */}
             <div className="form-group">
-              <label htmlFor="position">Position</label>
+              <label htmlFor="position">Chức vụ</label>
               <select
                 id="position"
                 name="positionId"
@@ -195,7 +196,7 @@ const CreateUser = () => {
                         key={`${index} + "position"`}
                         value={position.key}
                       >
-                        {position.valueEn}
+                        {position.valueVi}
                       </option>
                     );
                   })}
@@ -204,7 +205,7 @@ const CreateUser = () => {
 
             {/* ROLE */}
             <div className="form-group">
-              <label htmlFor="role">Role</label>
+              <label htmlFor="role">Quyền</label>
               <select
                 id="role"
                 name="roleId"
@@ -219,7 +220,7 @@ const CreateUser = () => {
                   ROLE.map((role, index) => {
                     return (
                       <option key={`${index} + "role"`} value={role.key}>
-                        {role.valueEn}
+                        {role.valueVi}
                       </option>
                     );
                   })}

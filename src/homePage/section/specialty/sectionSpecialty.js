@@ -1,14 +1,14 @@
-import "./sectionDoctor.scss";
-import React, { useState } from "react";
-import Slider from "react-slick";
+import { useState } from "react";
 import _ from "lodash";
+import Slider from "react-slick";
+import "./scss/sectionSpecialty.scss";
 import { useNavigate } from "react-router";
 
-export default function SectionDoctor(props) {
-  const { dataTopDoctor } = props;
+const SectionSpecialty = (props) => {
+  const { dataSpecialist } = props;
+  let navigate = useNavigate();
   const [isAtStart, setIsAtStart] = useState(true); // Trạng thái kiểm tra slider có ở đầu không
   const [isAtEnd, setIsAtEnd] = useState(false); // Trạng thái kiểm tra slider có ở cuối không
-  let navigate = useNavigate();
 
   const settings = {
     dots: false,
@@ -45,14 +45,14 @@ export default function SectionDoctor(props) {
     ),
   };
 
-  const data = dataTopDoctor?.data || [];
+  const data = dataSpecialist?.data || [];
   const groups = _.chunk(data, 4); // Chia thành các nhóm 4 phần tử
 
   return (
-    <div className="section-container">
+    <div className="section-specialist-container">
       <div className="section-content">
         <div className="section-title">
-          <span>Bác sĩ nổi bật</span>
+          <span>Chuyên khoa</span>
         </div>
         <div className="section-slice">
           <Slider {...settings}>
@@ -61,18 +61,17 @@ export default function SectionDoctor(props) {
                 className="section-slice-child d-flex gap-3"
                 key={groupIndex}
               >
-                {group.map((doctor, doctorIndex) => (
+                {group.map((specialty, specialtyIndex) => (
                   <div
                     className="option-child"
-                    key={doctorIndex}
-                    onClick={() => navigate(`/doctor/${doctor.id}`)}
+                    key={specialtyIndex}
+                    onClick={() => navigate(`/specialty/${specialty.id}`)}
                   >
-                    <img src={doctor.image} alt="logo" />
+                    <img src={specialty.image} alt="logo" />
                     <p>
-                      {`${doctor.positionData.valueVi}, ${doctor.firstName} ${doctor.lastName}`}
+                      {`Khoa ${specialty.name}`}
                       <br />
                     </p>
-                    <p>{`Khoa ${doctor.infoSpecialistData.specialistData.name}`}</p>
                   </div>
                 ))}
               </div>
@@ -82,4 +81,5 @@ export default function SectionDoctor(props) {
       </div>
     </div>
   );
-}
+};
+export default SectionSpecialty;

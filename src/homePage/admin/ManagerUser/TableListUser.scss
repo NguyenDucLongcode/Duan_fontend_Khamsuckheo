@@ -65,4 +65,38 @@
       }
     }
   }
+  // pagnation
+  .pagination {
+    position: absolute;
+    bottom: 60px;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+
+  .page-item {
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  .page-item.active .page-link {
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border-radius: 4px;
+    padding: 5px 10px;
+  }
+
+  .page-link {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #007bff;
+  }
+
+  .page-item:hover .page-link {
+    background-color: #f0f0f0;
+  }
 }

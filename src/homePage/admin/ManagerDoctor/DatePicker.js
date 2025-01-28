@@ -5,7 +5,8 @@ import { format, getTime } from "date-fns";
 import { useDispatch } from "react-redux";
 import { timeSchedule } from "../../../redux/Slice/schedule";
 
-const DatePickerTable = () => {
+const DatePickerTable = (props) => {
+  const { type } = props;
   const [startDate, setStartDate] = useState(null);
   const formattedDate = format(startDate, "yyyy-MM-dd");
   // Timestamp dạng milliseconds
@@ -22,8 +23,8 @@ const DatePickerTable = () => {
         selected={startDate}
         onChange={(date) => setStartDate(date)} // Cập nhật ngày được chọn
         dateFormat="dd/MM/yyyy" // Định dạng ngày
-        minDate={new Date()}
         placeholderText="Chọn ngày" // Văn bản placeholder
+        minDate={type === "ManagerPicker" ? new Date() : ""}
       />
     </>
   );

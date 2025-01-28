@@ -7,6 +7,7 @@ import { useGetAllCodeTimeQuery } from "../../../../redux/SliceApi/allCodeApi";
 import { useCreateBookingAppointmentMutation } from "../../../../redux/SliceApi/patientSliceApi";
 import { toast } from "react-toastify";
 import Select from "react-select";
+import { format } from "date-fns";
 
 const DoctorModal = ({ dataTime, label }) => {
   const { id } = useParams();
@@ -16,14 +17,18 @@ const DoctorModal = ({ dataTime, label }) => {
   const initialDataSubmit = {
     email: "",
     doctorId: id || "",
-    date: dataTime?.date || "",
-    timeType: dataTime?.timeType || "",
+    doctorName: "",
+    date: "",
+    timeType: "",
     fullName: "",
     phoneNumber: "",
     address: "",
     reason: "",
+    dateString: "",
     birthday: "",
     gender: "",
+    time: "",
+    dateLabel: "",
   };
 
   const [dataSubmit, setDataSubmit] = useState(initialDataSubmit);
@@ -33,12 +38,29 @@ const DoctorModal = ({ dataTime, label }) => {
   const doctorInforSchedule = useSelector(
     (state) => state.doctor.doctorInforSchedule
   );
+  const doctorSchedule = useSelector((state) => state.doctor.doctorSchedule);
+
+  const formattedDate = dataTime?.date
+    ? format(new Date(Number(dataTime.date)), "dd/MM/yyyy")
+    : "Ngày không hợp lệ";
 
   const handleInputChange = ({ target: { name, value } }) => {
     setDataSubmit((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSummit = async () => {
+    if (
+      !dataSubmit.email ||
+      !dataSubmit.fullName ||
+      !dataSubmit.phoneNumber ||
+      !dataSubmit.birthday ||
+      !dataSubmit.gender ||
+      !dataSubmit.address ||
+      !dataSubmit.reason
+    ) {
+      toast.error("All fields are required.");
+      return;
+    }
     // validate email
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     const isEmailValid = emailPattern.test(dataSubmit.email);
@@ -58,7 +80,7 @@ const DoctorModal = ({ dataTime, label }) => {
       const res = await createBookingAppointment(dataSubmit).unwrap();
       if (res.errCode === 0) {
         toast.success(res.message);
-        handleCloseModal();
+        // handleCloseModal();
       } else {
         toast.error(res.message);
       }
@@ -99,8 +121,15 @@ const DoctorModal = ({ dataTime, label }) => {
       ...prev,
       birthday: dateBirthday || "",
       gender: selectedOption?.value || "",
+      dateString: formattedDate || "",
+      date: dataTime?.date || "",
+      timeType: dataTime?.timeType || "",
+      time: dataTime?.timeTypeValue?.valueVi || "",
+      doctorName:
+        `${doctorSchedule?.firstName} ${doctorSchedule?.lastName}` || "",
+      dateLabel: label,
     }));
-  }, [dateBirthday, selectedOption]);
+  }, [dateBirthday, selectedOption, dataTime]);
 
   return (
     <div
@@ -127,7 +156,7 @@ const DoctorModal = ({ dataTime, label }) => {
             ></button>
           </div>
           <div className="modal-body">
-            <ProfileDoctor dataTime={dataTime} label={label} />
+            <ProfileDoctor dataTime={dataTime} label={label} doctorId={id} />
             <span>{`Giá khám: ${doctorInforSchedule?.pricedData?.valueVi} đ`}</span>
             <div className="row">
               <div className="col">

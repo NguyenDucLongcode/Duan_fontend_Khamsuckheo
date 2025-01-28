@@ -11,6 +11,10 @@ import {
   HomePageAdmin,
   ManagerDoctor,
 } from "./homePage/admin/index";
+import VerifyBooking from "./homePage/section/doctor/verilyBooking";
+import ManagerSpecialist from "./homePage/admin/ManagerSpecialists/ManagerSpecialist";
+import DetailSpecialty from "./homePage/section/specialty/detailSpecialty";
+import ManagerClinic from "./homePage/admin/MangerClinic/ManagClinic";
 function App() {
   return (
     <>
@@ -20,6 +24,8 @@ function App() {
           <Route path="/" element={<LayoutHomePage />}>
             <Route index element={<HomePage />} />
             <Route path="doctor/:id" element={<DetailDoctor />} />
+            <Route path="specialty/:id" element={<DetailSpecialty />} />
+            <Route path="verify-booking" element={<VerifyBooking />} />
           </Route>
 
           {/* auth */}
@@ -30,6 +36,8 @@ function App() {
             <Route index element={<HomePageAdmin />} />
             <Route path="User" element={<ManagerUser />} />
             <Route path="Doctor" element={<ManagerDoctor />} />
+            <Route path="Specialty" element={<ManagerSpecialist />} />
+            <Route path="Clinic" element={<ManagerClinic />} />
           </Route>
         </Routes>
       </Router>

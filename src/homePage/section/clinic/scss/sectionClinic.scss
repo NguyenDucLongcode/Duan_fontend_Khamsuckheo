@@ -1,7 +1,7 @@
-.section-container {
-  height: 450px;
+.section-clinic-container {
+  height: 490px;
   width: 100%;
-  background-color: #fffefe;
+  background-color: #f4f1f1;
   position: relative;
   z-index: 2;
   padding: 30px 90px;
@@ -10,7 +10,6 @@
     height: 100%;
     .section-title {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       margin-bottom: 25px;
       span {
@@ -34,32 +33,35 @@
       .section-slice-child {
         display: flex;
         align-items: center;
+        // justify-content: space-evenly;
         img {
-          width: 250px;
-          height: 250px;
+          width: 500px;
+          height: 200px;
           object-fit: cover;
-          border-radius: 999px;
+          border-radius: 5px;
         }
         .option-child {
+          position: relative;
+          padding: 20px;
           display: flex;
           flex-flow: column;
           justify-content: center;
           align-items: center;
-
+          margin-left: 80px;
+          box-shadow: 1px 1px 5px rgb(48, 47, 47);
+          border-radius: 10px;
           & p:nth-of-type(1) {
             font-size: 23px;
             font-weight: 500;
             margin-top: 15px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
             width: 300px;
             text-align: center;
-          }
-          & p:nth-of-type(2) {
-            font-size: 23px;
-            color: gray;
-            margin-top: -15px;
+            white-space: nowrap; /* Không cho văn bản xuống dòng */
+            overflow: hidden; /* Ẩn phần văn bản tràn ra ngoài */
+            text-overflow: ellipsis; /* Thêm dấu "..." khi bị cắt */
+            border: 1px solid gray; /* Thêm viền (tùy chọn để dễ quan sát) */
+            border-radius: 5px;
+            padding: 1px;
           }
         }
         div {
@@ -78,5 +80,15 @@
     width: 50px;
     height: 50px;
     background: rgb(45, 44, 44, 0.5);
+  }
+  .after-hover {
+    padding: 1px 5px;
+    position: absolute;
+    left: 100px;
+    bottom: 0px;
+    background: rgb(213, 213, 213);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    width: 300px;
   }
 }

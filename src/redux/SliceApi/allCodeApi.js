@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+import { LocalBackend } from "../../utilities/Common";
 export const AllCodeApi = createApi({
   reducerPath: "AllCodeApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8080/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: LocalBackend() }),
   endpoints: (builder) => ({
     getAllCodeTime: builder.query({
       query: (style) => ({

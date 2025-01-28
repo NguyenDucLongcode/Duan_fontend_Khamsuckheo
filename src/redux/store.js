@@ -2,7 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 // element
-import { UserApi, DoctorApi, AllCodeApi, PatientApi } from "./SliceApi/index";
+import {
+  UserApi,
+  DoctorApi,
+  AllCodeApi,
+  PatientApi,
+  SpecialistApi,
+  ClinicApi,
+} from "./SliceApi/index";
 import {
   allCodeReducer,
   userReducer,
@@ -29,6 +36,8 @@ const store = configureStore({
     [DoctorApi.reducerPath]: DoctorApi.reducer,
     [AllCodeApi.reducerPath]: AllCodeApi.reducer,
     [PatientApi.reducerPath]: PatientApi.reducer,
+    [SpecialistApi.reducerPath]: SpecialistApi.reducer,
+    [ClinicApi.reducerPath]: ClinicApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -39,7 +48,9 @@ const store = configureStore({
       .concat(UserApi.middleware)
       .concat(DoctorApi.middleware)
       .concat(AllCodeApi.middleware)
-      .concat(PatientApi.middleware),
+      .concat(PatientApi.middleware)
+      .concat(ClinicApi.middleware)
+      .concat(SpecialistApi.middleware),
 });
 
 const persistor = persistStore(store);

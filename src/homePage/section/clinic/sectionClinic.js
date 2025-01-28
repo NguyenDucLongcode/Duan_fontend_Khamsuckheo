@@ -1,14 +1,15 @@
-import "./sectionDoctor.scss";
-import React, { useState } from "react";
-import Slider from "react-slick";
+import { useState } from "react";
 import _ from "lodash";
+import Slider from "react-slick";
+import "./scss/sectionClinic.scss";
 import { useNavigate } from "react-router";
 
-export default function SectionDoctor(props) {
-  const { dataTopDoctor } = props;
+const SectionClinic = (props) => {
+  const { dataClinic } = props;
+  let navigate = useNavigate();
   const [isAtStart, setIsAtStart] = useState(true); // Trạng thái kiểm tra slider có ở đầu không
   const [isAtEnd, setIsAtEnd] = useState(false); // Trạng thái kiểm tra slider có ở cuối không
-  let navigate = useNavigate();
+  const [hoverIndex, setHoverIndex] = useState(null); // Lưu chỉ số của clinic được hover
 
   const settings = {
     dots: false,
@@ -45,14 +46,14 @@ export default function SectionDoctor(props) {
     ),
   };
 
-  const data = dataTopDoctor?.data || [];
-  const groups = _.chunk(data, 4); // Chia thành các nhóm 4 phần tử
+  const data = dataClinic?.data || [];
+  const groups = _.chunk(data, 3); // Chia thành các nhóm 4 phần tử
 
   return (
-    <div className="section-container">
+    <div className="section-clinic-container">
       <div className="section-content">
         <div className="section-title">
-          <span>Bác sĩ nổi bật</span>
+          <span>Cơ sở y tế</span>
         </div>
         <div className="section-slice">
           <Slider {...settings}>
@@ -61,18 +62,22 @@ export default function SectionDoctor(props) {
                 className="section-slice-child d-flex gap-3"
                 key={groupIndex}
               >
-                {group.map((doctor, doctorIndex) => (
+                {group.map((clinic, clinicIndex) => (
                   <div
                     className="option-child"
-                    key={doctorIndex}
-                    onClick={() => navigate(`/doctor/${doctor.id}`)}
+                    key={clinicIndex}
+                    // onClick={() => navigate(`/specialty/${specialty.id}`)}
                   >
-                    <img src={doctor.image} alt="logo" />
-                    <p>
-                      {`${doctor.positionData.valueVi}, ${doctor.firstName} ${doctor.lastName}`}
-                      <br />
+                    <img src={clinic.image} alt="logo" />
+                    <p
+                      onMouseEnter={() => setHoverIndex(clinicIndex)} // Cập nhật chỉ số của phần tử được hover
+                      onMouseLeave={() => setHoverIndex(null)} // Đặt lại khi rời chuột
+                    >
+                      {clinic.name}
                     </p>
-                    <p>{`Khoa ${doctor.infoSpecialistData.specialistData.name}`}</p>
+                    {hoverIndex === clinicIndex && (
+                      <span className="after-hover">{clinic.name}</span>
+                    )}
                   </div>
                 ))}
               </div>
@@ -82,4 +87,5 @@ export default function SectionDoctor(props) {
       </div>
     </div>
   );
-}
+};
+export default SectionClinic;

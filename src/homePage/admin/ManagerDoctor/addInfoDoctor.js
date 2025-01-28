@@ -12,6 +12,7 @@ import {
   useGetDoctorByIdQuery,
 } from "../../../redux/SliceApi/doctorApiSlice";
 import { useGetAllCodeTimeQuery } from "../../../redux/SliceApi/allCodeApi";
+import { useGetAllSpecialistQuery } from "../../../redux/SliceApi/specialistApi";
 
 const AddInfoDoctor = ({ dataAllDoctors }) => {
   const mdParser = new MarkdownIt();
@@ -20,6 +21,7 @@ const AddInfoDoctor = ({ dataAllDoctors }) => {
   const { data: dataPriceAllCode } = useGetAllCodeTimeQuery("PRICE");
   const { data: dataPaymentAllCode } = useGetAllCodeTimeQuery("PAYMENT");
   const { data: dataProvinceAllCode } = useGetAllCodeTimeQuery("PROVINCE");
+  const { data: dataAllSpecialist } = useGetAllSpecialistQuery();
   const [createDoctor] = useCreateDoctorMutation();
   const [createTableDoctorInfo] = useCreateTableDoctorInfoMutation();
 
@@ -33,13 +35,14 @@ const AddInfoDoctor = ({ dataAllDoctors }) => {
   const [selectedOptionPrice, setSelectedOptionPrice] = useState(null);
   const [selectedOptionPayment, setSelectedOptionPayment] = useState(null);
   const [selectedOptionProvince, setSelectedOptionProvince] = useState(null);
+  const [selectedAllSpecialist, setSelectedAllSpecialist] = useState(null);
   const [getDataInput, setGetDataInput] = useState({
     doctorId: "",
     contentHTML: "",
     contentMarkdown: "",
     description: "",
-    specialistId: null,
-    clinicId: null,
+    specialistId: "",
+    clinicId: 1,
     priceId: "",
     provinceId: "",
     paymentId: "",
@@ -52,6 +55,7 @@ const AddInfoDoctor = ({ dataAllDoctors }) => {
     prices: [],
     payments: [],
     provinces: [],
+    specialists: [],
   });
 
   // Queries
@@ -107,11 +111,21 @@ const AddInfoDoctor = ({ dataAllDoctors }) => {
         })),
       }));
     }
+    if (dataAllSpecialist?.data?.length) {
+      setOptions((prev) => ({
+        ...prev,
+        specialists: dataAllSpecialist.data.map((item) => ({
+          value: item.id,
+          label: item.name,
+        })),
+      }));
+    }
   }, [
     dataAllDoctors,
     dataPriceAllCode,
     dataPaymentAllCode,
     dataProvinceAllCode,
+    dataAllSpecialist,
   ]);
 
   // Populate getDataInput and Select values when API data is loaded
@@ -128,6 +142,7 @@ const AddInfoDoctor = ({ dataAllDoctors }) => {
         description: doctorData?.MarkdownData?.description || "",
         priceId: tableData?.priceId || "",
         provinceId: tableData?.provinceId || "",
+        specialistId: tableData?.specialistId || "",
         paymentId: tableData?.paymentId || "",
         addressClinic: tableData?.addressClinic || "",
         nameClinic: tableData?.nameClinic || "",
@@ -152,6 +167,11 @@ const AddInfoDoctor = ({ dataAllDoctors }) => {
           (province) => province.value === tableData?.provinceId
         ) || null
       );
+      setSelectedAllSpecialist(
+        options.specialists.find(
+          (specialists) => specialists.value === tableData?.specialistId
+        ) || null
+      );
     }
   }, [tableDoctorInforById, dataDoctorById, options]);
 
@@ -163,12 +183,14 @@ const AddInfoDoctor = ({ dataAllDoctors }) => {
       priceId: selectedOptionPrice?.value || prev.priceId,
       paymentId: selectedOptionPayment?.value || prev.paymentId,
       provinceId: selectedOptionProvince?.value || prev.provinceId,
+      specialistId: selectedAllSpecialist?.value || prev.specialistId,
     }));
   }, [
     selectedOption,
     selectedOptionPrice,
     selectedOptionPayment,
     selectedOptionProvince,
+    selectedAllSpecialist,
   ]);
 
   // Handlers
@@ -206,8 +228,6 @@ const AddInfoDoctor = ({ dataAllDoctors }) => {
       console.error("Error creating doctor: ", error);
     }
   };
-
-  console.log(">>> chekc ", getDataInput);
 
   // Render
   return (
@@ -285,6 +305,14 @@ const AddInfoDoctor = ({ dataAllDoctors }) => {
             name="note"
             value={getDataInput.note}
             onChange={handleInputChange}
+          />
+        </div>
+        <div className="input-Specialist">
+          <label>Chọn chuyên khoa</label>
+          <Select
+            value={selectedAllSpecialist}
+            onChange={setSelectedAllSpecialist}
+            options={options.specialists}
           />
         </div>
       </div>

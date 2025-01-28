@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 const DateSchedule = (props) => {
   const { dataAllDoctors } = props;
   //state
+  const typeComponentDate = "ManagerPicker";
   const [selectedOption, setSelectedOption] = useState(null);
   const [options, setOptions] = useState([]);
   const [dataScheduleSummit, setDataScheduleSummit] = useState([]);
@@ -27,6 +28,17 @@ const DateSchedule = (props) => {
     );
   };
 
+  // so sánh selection
+  const compareNumbers = (arraySelections) => {
+    const sortedArr = arraySelections.sort((a, b) => {
+      const numA = parseInt(a.slice(1)); // Lấy số sau chữ T
+      const numB = parseInt(b.slice(1));
+      return numA - numB; // So sánh số
+    });
+
+    return sortedArr; // Trả về mảng đã sắp xếp
+  };
+
   const handleClickSummit = async () => {
     // validate
     if (!selectedOption) {
@@ -35,7 +47,7 @@ const DateSchedule = (props) => {
     if (!date) {
       toast.error("please choose date");
     }
-    console.log(">>> ", valueSchedule);
+
     if (!valueSchedule.length > 0) {
       toast.error("please choose at least  a schedule");
     }
@@ -50,8 +62,8 @@ const DateSchedule = (props) => {
     } catch (error) {
       console.error("Error creating doctor schedule", error);
     }
-
     setDataScheduleSummit([]);
+    setValueSchedule([]);
   };
   useEffect(() => {
     if (dataAllDoctors) {
@@ -68,8 +80,8 @@ const DateSchedule = (props) => {
 
   useEffect(() => {
     setDataScheduleSummit([
-      ...valueSchedule.map((item) => ({
-        doctorId: selectedOption.value,
+      ...compareNumbers(valueSchedule).map((item) => ({
+        doctorId: selectedOption?.value,
         date: date,
         timeType: item,
       })),
@@ -90,7 +102,7 @@ const DateSchedule = (props) => {
         </div>
         <div className="content-left">
           <p className="content-left-title">Chọn ngày khám</p>
-          <DatePickerTable className="dateTable" />
+          <DatePickerTable className="dateTable" type={typeComponentDate} />
         </div>
       </div>
       <div className="schedule-content">

@@ -1,0 +1,63 @@
+.detailSpecialty-container {
+  padding: 40px 100px;
+  .information-specialty {
+    box-shadow: 2px 1px 5px gray;
+    padding: 10px 20px;
+    .infor-markdown {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-clamp: 20;
+      height: 4.5em;
+      line-height: 1.5em;
+    }
+    .specialist-name {
+      font-size: 22px;
+      font-weight: 550;
+    }
+    .specialist-title {
+      margin-top: -8px;
+      font-size: 17px;
+    }
+    .detailInfor {
+      color: rgb(54, 54, 245);
+    }
+  }
+  .inforDoctorSchedule-content {
+    .information-scheduleDoctor {
+      box-shadow: 1px 2px 5px rgb(183, 183, 183);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      display: flex;
+      .content-left {
+        width: 50%;
+      }
+      .content-right {
+        width: 50%;
+        border-left: 2px solid rgb(234, 233, 233);
+        hr {
+          margin: 0 auto;
+          width: 95%;
+          margin-bottom: 10px;
+          color: rgb(199, 198, 198);
+        }
+        .doctorSchedule {
+          margin-left: 23px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+  .noDoctor-content {
+    height: 80px;
+    box-shadow: 2px 1px 5px gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 20px;
+  }
+}

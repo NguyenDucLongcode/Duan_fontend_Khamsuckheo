@@ -5,10 +5,13 @@ import "./componentDoctorInforSchedule.scss";
 import { doctorInforSchedule } from "../../../redux/Slice/doctor";
 import { useDispatch } from "react-redux";
 
-const DoctorInforSchedule = () => {
+const DoctorInforSchedule = (props) => {
   const { id } = useParams();
+  const { doctorId } = props;
   const dispatch = useDispatch();
-  const { data: dataDocTorInforSchedule } = useGetTableDoctorInforByIdQuery(id);
+  const { data: dataDocTorInforSchedule } = useGetTableDoctorInforByIdQuery(
+    doctorId ? doctorId : id
+  );
   const [isHideShowTable, setIsHideShowTable] = useState(false);
 
   if (dataDocTorInforSchedule && dataDocTorInforSchedule?.data) {

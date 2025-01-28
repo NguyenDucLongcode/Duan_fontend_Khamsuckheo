@@ -29,6 +29,10 @@ export const useLightbox = (slides) => {
   return { open, setOpen, LightboxComponent };
 };
 
+export const LocalBackend = () => {
+  let url = "http://localhost:8080/";
+  return url;
+};
 // covert from file to  Base64
 export function fileToBase64(file) {
   return new Promise((resolve, reject) => {
